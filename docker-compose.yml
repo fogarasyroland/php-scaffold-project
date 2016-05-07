@@ -1,0 +1,30 @@
+php:
+  build: ./php
+  links:
+    - mysql
+  ports:
+    - 80:80
+  volumes:
+    - ./htdocs:/var/www/html
+phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - 8080:80
+    links:
+        - mysql
+    environment:
+        PMA_HOST: mysql
+mysql:
+  image: mysql:5.5
+  volumes_from:
+    - data
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: project
+    MYSQL_USER: project
+    MYSQL_PASSWORD: project
+data:
+    image: mysql:5.5
+    volumes:
+        - /var/lib/mysql
+    command: "true"
