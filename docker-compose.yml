@@ -1,11 +1,21 @@
 php:
-  build: ./php
+  dockerfile: php-Dockerfile
+  build: .
   links:
     - mysql
   ports:
     - 80:80
+    - 9000:9000
   volumes:
-    - ./htdocs:/var/www/html
+    - ./app/www:/var/www/html
+node:
+  dockerfile: node-Dockerfile
+  build: .
+  ports:
+    - 35729:35729
+  volumes:
+    - .:/usr/src/app/app
+#    - /usr/local/lib/node_modules
 phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:

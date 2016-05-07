@@ -1,0 +1,12 @@
+{
+  "name": "php-scaffold",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "../node_modules/gulp/bin/gulp.js"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-sass": "*",
+    "gulp-livereload": "*"
+  }
+}
