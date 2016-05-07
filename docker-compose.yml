@@ -15,7 +15,6 @@ node:
     - 35729:35729
   volumes:
     - .:/usr/src/app/app
-#    - /usr/local/lib/node_modules
 phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
