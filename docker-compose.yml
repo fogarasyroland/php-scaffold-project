@@ -14,8 +14,11 @@ node:
   build: .
   ports:
     - 35729:35729
+    - 3000:3000
+    - 3001:3001
   volumes:
     - .:/usr/src/app/app
+    - /usr/src/app/node_modules
 phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:

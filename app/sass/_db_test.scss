@@ -1,0 +1,23 @@
+$break-small: 360px;
+
+#db_test {
+  background-color: lighten($brand-color, 8%);
+  font-family: monospace;
+  font-size: 12px;
+  color: #333;
+  text-transform: lowercase;
+  padding: 20px;
+  .error {
+    color: #800;
+  }
+  .suc {
+    color: #080;
+  }
+  .warning {
+    color: #f70;
+  }
+  @media screen and (max-width: $break-small) {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
