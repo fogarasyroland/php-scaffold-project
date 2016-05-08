@@ -1,23 +1,30 @@
 $break-small: 360px;
+$black: #333;
+$red: #800;
+$green: #080;
+$yellow: #f70;
 
-#db_test {
+.db-test {
   background-color: lighten($brand-color, 8%);
+  color: $black;
   font-family: monospace;
   font-size: 12px;
-  color: #333;
-  text-transform: lowercase;
   padding: 20px;
+  text-transform: lowercase;
+
   .error {
-    color: #800;
+    color: $red;
   }
+
   .suc {
-    color: #080;
+    color: $green;
   }
+
   .warning {
-    color: #f70;
+    color: $yellow;
   }
   @media screen and (max-width: $break-small) {
-    padding: 10px;
     font-size: 16px;
+    padding: 10px;
   }
 }

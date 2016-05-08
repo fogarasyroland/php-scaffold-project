@@ -12,7 +12,7 @@ include('php/db_test.php');
 </head>
 <body>
   <h1>PHP Scaffold Project</h1>
-  <pre id="db_test">
+  <pre class="db-test">
 <?php
 function print_ln($str, $type = 0){
   $str = "> $str";
