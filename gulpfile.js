@@ -22,7 +22,7 @@ gulp.task('sass:watch', function () {
 
 gulp.task('browser-sync', function() {
     browserSync.init({
-        proxy: "172.17.0.1",
+        proxy: "php",
         files: ["app/**/*.php", "app/**/*.css"]
     });
 });
