@@ -2,7 +2,7 @@ php:
   dockerfile: php-Dockerfile
   build: .
   environment:
-    XDEBUG_CONFIG: remote_host=php
+    XDEBUG_CONFIG: remote_host=172.17.42.1
   links:
     - mysql
   ports:

@@ -4,11 +4,17 @@
   "scripts": {
     "start": "../node_modules/gulp/bin/gulp.js"
   },
+  "dependencies": {
+    "jquery-browserify": "*"
+  },
   "devDependencies": {
     "gulp": "*",
     "gulp-sass": "*",
     "gulp-livereload": "*",
     "gulp-sourcemaps": "*",
-    "browser-sync": "*"
+    "browser-sync": "*",
+    "browserify": "*",
+    "vinyl-source-stream": "*",
+    "vinyl-transform": "*"
   }
 }
