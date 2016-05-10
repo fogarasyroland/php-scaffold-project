@@ -4,7 +4,7 @@ var $ = require('jquery-browserify');
   setTimeout(() => {
     var a = 2;
     var b = 7;
-    $("body").html(`${a + b}`)
+    // $("body").html(`${a + b}`)
 
   },1000);
 // });

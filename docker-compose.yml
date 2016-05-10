@@ -1,44 +1,46 @@
-php:
-  dockerfile: php-Dockerfile
-  build: .
-  environment:
-    XDEBUG_CONFIG: remote_host=172.17.42.1
-  links:
-    - mysql
-  ports:
-    - 80:80
-  volumes:
-    - ./app/www:/var/www/html
-node:
-  dockerfile: node-Dockerfile
-  build: .
-  links:
-    - php
-  ports:
-    - 3000:3000
-    - 3001:3001
-  volumes:
-    - .:/usr/src/app/app
-    - /usr/src/app/node_modules
-phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-        - 8080:80
-    links:
-        - mysql
+version: '2'
+services:
+  php:
+    build:
+      context: .
+      dockerfile: php-Dockerfile
     environment:
-        PMA_HOST: mysql
-mysql:
-  image: mysql:5.5
-  volumes_from:
-    - data
-  environment:
-    MYSQL_ROOT_PASSWORD: root
-    MYSQL_DATABASE: project
-    MYSQL_USER: project
-    MYSQL_PASSWORD: project
-data:
+      XDEBUG_CONFIG: remote_host=172.17.42.1
+    links:
+      - mysql
+    ports:
+      - 80:80
+    volumes:
+      - ./app/www:/var/www/html
+  node:
+    build:
+      context: .
+      dockerfile: node-Dockerfile
+    links:
+      - php
+    ports:
+      - 3000:3000
+      - 3001:3001
+    volumes:
+      - .:/usr/src/app/app
+      - /usr/src/app/node_modules
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      ports:
+          - 8080:80
+      links:
+          - mysql
+      environment:
+          PMA_HOST: mysql
+  mysql:
     image: mysql:5.5
     volumes:
-        - /var/lib/mysql
-    command: "true"
+      - data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: project
+      MYSQL_USER: project
+      MYSQL_PASSWORD: project
+volumes:
+  data:
+    driver: local

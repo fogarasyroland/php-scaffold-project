@@ -8,6 +8,9 @@ include('php/db_test.php');
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" href="css/index.css"/>
+  <script src="https://fb.me/react-15.0.2.js"></script>
+  <script src="https://fb.me/react-dom-15.0.2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
   <script src="js/output.js"></script>
 </head>
 <body>
@@ -23,49 +26,12 @@ function print_ln($str, $type = 0){
 test_db();
 ?>
   </pre>
-  <h2><a href="a.php">a.php</a></h2>
-  <form onsubmit="return alert('ye') || false;">
-    <input/>
-  </form>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  <img src="http://i.telegraph.co.uk/multimedia/archive/03589/Wellcome_Image_Awa_3589699k.jpg"/>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
-  1<br>
+  <div id="example"></div>
+  <script type="text/babel">
+    ReactDOM.render(
+      <h1>Hello, world!</h1>,
+      document.getElementById('example')
+    );
+  </script>
 </body>
 </html>
