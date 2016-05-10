@@ -2,23 +2,29 @@ var gulp = require('gulp'),
     transform = require('vinyl-transform'),
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
+    babelify = require('babelify'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+
+    css = {src: './app/sass/**/*.scss', dest: './app/www/css', watch : 'app/www/**/*.css'},
+    php = {src: "app/**/*.php", dest: "app/**/*.php"},
+    js = {src: './app/es6/**/*.js', dest: './app/www/js', watch: './app/www/**/*.js'};
+
 gulp.task('default', ['browser-sync', 'sass', 'sass:watch', 'browserify', 'es6:watch'], function() {
 
 });
 
 gulp.task('sass', function () {
-  return gulp.src('./app/sass/**/*.scss')
+  return gulp.src(css.src)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./app/www/css'));
+    .pipe(gulp.dest(css.dest));
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch('app/sass/**/*.scss', ['sass'], function (event) {
+  gulp.watch(css.src, ['sass'], function (event) {
     console.log(event);
   });
 });
@@ -26,12 +32,14 @@ gulp.task('sass:watch', function () {
 gulp.task('browser-sync', function() {
     browserSync.init({
         proxy: "php",
-        files: ["app/**/*.php", "app/**/*.css"]
+        reloadDelay: 0,
+        files: [php.src, css.watch, js.watch]
     });
 });
 
 gulp.task('browserify', function () {
-  return browserify('./app/es6/index.js')
+  return browserify({entries: './app/es6/index.js', debug: true})
+    .transform(babelify, {presets: ['es2015']})
     .bundle()
     .pipe(source('output.js'))
     .pipe(gulp.dest('./app/www/js/'));
@@ -41,13 +49,13 @@ gulp.task('browserify', function () {
     return b.bundle();
   });
 
-  return gulp.src(['./app/es6/**/*.js'])
+  return gulp.src([js.src])
     .pipe(browserified)
-    .pipe(gulp.dest('./app/www/js'));
+    .pipe(gulp.dest(js.dest));
 });
 
 gulp.task('es6:watch', function () {
-  gulp.watch('./app/es6/**/*.js', ['browserify'], function (event) {
+  gulp.watch(js.src, ['browserify'], function (event) {
     console.log(event);
   });
 });

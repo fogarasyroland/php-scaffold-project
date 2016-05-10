@@ -14,6 +14,8 @@
     "gulp-sourcemaps": "*",
     "browser-sync": "*",
     "browserify": "*",
+    "babelify": "*",
+    "babel-preset-es2015": "*",
     "vinyl-source-stream": "*",
     "vinyl-transform": "*"
   }
